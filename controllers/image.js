@@ -23,32 +23,14 @@ const handleImage = (req ,res ,db) => {
     const { id } = req.body;
     db('users').where('id' , '=' , id)
     .increment('enteries',1)
-
+    .returning('enteries')
     .then(enteries => {
-        //console.log(enteries);
-        db.select('enteries').from('users').where('id' ,id).then(user => {
-          //  console.log(user[0].enteries);
-          res.json(user[0].enteries);
-           
-        })
+      res.json(enteries[0]);
        
         
     })
     .catch(err => res.status(400).json('unable to get enteries'))
-    //let found = false ; 
-    // database.users.forEach(user => {
-    //     if(user.id === id){
-    //         found = true;
-    //         user.enteries++;
-    //         return res.json(user.enteries);
 
-    //     }
-      
-    // })
-
-    // if(!found){
-    //     res.status(400).json('not found')
-    // }
 }
 
 module.exports ={

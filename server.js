@@ -14,12 +14,12 @@ const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
 const db = knex({
-    client: 'mysql',
+    client: 'pg',
     connection: {
       host : '127.0.0.1',
-      user : 'root',
-      password : '',
-      database : 'smart-brain'
+      user : 'postgres',
+      password : 'test',
+      database : 'smartbrain'
     }
   });
 
@@ -33,34 +33,6 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-const database = {
-    users : [
-        {
-            id: '123',
-            name: 'john',
-            email: 'john@gmail.com',
-            password : 'john',
-            enteries : 0,
-            joined : new Date()
-        },
-        {
-            id: '124',
-            name: 'utsav',
-            email: 'utsav@gmail.com',
-            password : 'Utsav@07',
-            enteries : 0,
-            joined : new Date()
-        }
-    ],
-
-    login: [
-        {
-            id: '987',
-            hash: '',
-            email : 'johan@gamil.com'
-        }
-    ]
-}
 
 app.get('/' , (req , res) => {
     //res.send('this is working')

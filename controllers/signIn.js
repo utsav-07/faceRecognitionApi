@@ -23,22 +23,7 @@ const handleSignIn = (req , res ,db, bcrypt) => {
         }
     })
     .catch(err => res.status(400).json('wrong credentials'));
-    /*bcrypt.compare("apples", '$2a$10$82uMQzE7KDE8D8guF7XmXuXVZtKrVQ/KOO/eFvB/3q4nBM36Jktve' , function(err ,res){
-        // result == true
-        console.log('first guess' ,res)
-    });
-    bcrypt.compare("veggies", '$2a$10$82uMQzE7KDE8D8guF7XmXuXVZtKrVQ/KOO/eFvB/3q4nBM36Jktve' , function(err ,res){
-        // result == false
-        console.log('second guess' ,res)
-    });*/
 
-
-    // if(req.body.email === database.users[0].email && req.body.password === database.users[0].password){
-    //     res.json(database.users[0]);
-    // } else{
-    //     res.status(400).json('error logging in')
-    // }
-   // res.json('signing')
 }
 
 module.exports ={

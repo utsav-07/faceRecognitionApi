@@ -10,29 +10,22 @@ const handleRegister = (req ,res, db, bcrypt) => {
             email : email
         })
         .into('login')
-        //.returning(email)
-        // db.select('email').from('login').where('id',loginEmail).then(data => {
-                    
-        // }),
+        .returning('email')
+ 
         .then(loginEmail => {
-            
-            //console.log(loginEmail);
+        
 
             return trx('users')
            
-            
+            .returning('*')
             .insert({
-                email : email,
+                email : loginEmail[0],
                 name: name,
                 joined : new Date(),
             
-            }).then(response => {
-               // res.json(user[0]);
-              // console.log(response);
-               ((db.select('*').from('users').where('id' , response))).then(data => {
-                   res.json(data[0]);
-                
-               });
+            }).then(user => {
+                res.json(user[0]);
+            
                
             })
 
